@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>项目展示 · 潘昕作品集</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="brand">潘昕<span>·</span>作品集</div>
+    <div class="nav-links">
+      <a href="index.html">首页</a>
+      <a href="projects.html" class="active">项目展示</a>
+      <a href="patents.html">专利成果</a>
+      <a href="contact.html">联系方式</a>
+    </div>
+  </div>
+</nav>
+
+<section class="section">
+  <div class="section-head">
+    <div class="kicker">PROJECTS</div>
+    <h2>项目展示</h2>
+    <p class="sub">共 6 个项目，覆盖 AI 应用开发、全栈工程、自动化工作流与原创产品设计。</p>
+  </div>
+
+  <!-- 项目一 -->
+  <article class="project reveal" id="p1">
+    <div class="ph"><div class="no">01</div><h3>跨平台 AI 桌面宠物全栈开发</h3><div class="ptag">Electron · 全栈</div></div>
+    <div class="pbody">
+      <div class="row"><div class="lab">项目简介</div><div class="val">针对传统桌面应用功能单一、缺少智能交互能力的问题，设计并开发一款跨平台 AI 桌面宠物应用，实现桌面端交互、用户管理、数据存储及 AI 能力融合。</div></div>
+      <div class="row"><div class="lab">项目背景</div><div class="val">传统桌面应用功能单一、缺少智能交互能力，无法满足用户对轻量级智能陪伴工具的需求。</div></div>
+      <div class="row"><div class="lab">问题定义</div><div class="val">现有桌面应用缺乏 AI 交互能力，数据管理与服务端架构相对薄弱。</div></div>
+      <div class="row"><div class="lab">解决方案</div><div class="val">独立完成 Electron 桌面端与 Web 服务端整体架构设计，基于 Node.js 搭建后端服务，实现用户认证、SQLite 数据持久化及前后端通信机制；结合 OpenCode 辅助开发流程，引入 DeepSeek API 实现 AI 交互能力。</div></div>
+      <div class="row"><div class="lab">技术实现</div><div class="val"><div class="techchips"><span class="chip">Electron</span><span class="chip">Node.js</span><span class="chip">Express</span><span class="chip">SQLite</span><span class="chip">JWT</span><span class="chip">IPC 通信</span><span class="chip">DeepSeek API</span><span class="chip">OpenCode</span></div></div></div>
+      <div class="row"><div class="lab">项目亮点</div><div class="val"><ul><li>完成从需求分析、架构设计到功能实现的完整开发流程</li><li>实现 Windows 平台桌面应用部署运行</li><li>积累 AI 应用与全栈开发实践经验</li></ul></div></div>
+      <div class="row"><div class="lab">项目价值</div><div class="val">形成完整的 AI 桌面应用开发闭环，覆盖前端、后端、数据持久化与智能交互。</div></div>
+      <div class="row"><div class="lab">个人贡献</div><div class="val">独立完成 Electron 桌面端与 Web 服务端整体架构设计；基于 Node.js 搭建后端服务，实现用户认证、SQLite 数据持久化及前后端通信机制；结合 OpenCode 引入 DeepSeek API，完成客户端功能模块设计、接口调试及系统联调。</div></div>
+
+      <div class="imgs single">
+        <figure class="img-box"><img src="images/p1_flow.jpg" alt="系统流程图"><figcaption>系统流程图</figcaption></figure>
+      </div>
+
+      <div class="imgs">
+        <figure class="img-box"><img src="images/p1_login.png" alt="登录和注册页面"><figcaption>登录和注册页面</figcaption></figure>
+        <figure class="img-box"><img src="images/p1_main.png" alt="更换宠物图片"><figcaption>更换宠物图片 / 主要功能</figcaption></figure>
+      </div>
+
+      <div class="video-box">
+        <video src="images/p1_video.mp4" controls preload="metadata"></video>
+        <figcaption>项目演示视频</figcaption>
+      </div>
+
+      <div class="card" style="margin-top:26px;background:var(--bg-warm);">
+        <strong style="color:var(--green);font-family:var(--sans);font-size:16px;">PRD 摘要（产品需求文档.pdf）</strong>
+        <p style="font-size:14.5px;color:var(--muted);margin-top:10px;">文档包含项目背景、用户角色、功能需求（注册 / 登录 / 宠物交互）、非功能性需求与验收标准。核心数据流：用户 → POST /api/register|login → 后端 bcrypt 验证 → JWT 签发令牌 → login-success IPC → 主进程打开宠物窗口；存储层由 pet_users.db（SQLite）承载。</p>
+        <a class="dl-btn" href="images/p1_prd.pdf" target="_blank" download><span class="ic">⬇</span> 下载产品需求文档（PDF）</a>
+      </div>
+    </div>
+  </article>
+
+<!-- 项目二 -->
+  <article class="project reveal" id="p2">
+    <div class="ph"><div class="no">02</div><h3>AI 提示词自动化生成与 PPT 定制工具</h3><div class="ptag">视觉大模型 · Prompt</div></div>
+    <div class="pbody">
+      <div class="row"><div class="lab">项目简介</div><div class="val">针对用户制作 PPT 时需求描述不清晰、Prompt 编写成本高的问题，设计 AI 提示词自动生成工具，将自然语言需求转换为结构化 PPT 生成指令。</div></div>
+      <div class="row"><div class="lab">项目背景</div><div class="val">PPT 制作中用户常因需求描述不清晰而反复调试 Prompt，提示词编写成本高。</div></div>
+      <div class="row"><div class="lab">问题定义</div><div class="val">用户难以将自然语言需求快速转换为高质量的结构化 PPT 生成指令。</div></div>
+      <div class="row"><div class="lab">解决方案</div><div class="val">负责产品需求分析、Prompt 模板设计及大模型调用流程搭建；通过 OpenCode 辅助完成开发调试，结合 DeepSeek API 实现用户需求理解、提示词优化及内容生成流程。</div></div>
+      <div class="row"><div class="lab">技术实现</div><div class="val"><div class="techchips"><span class="chip">大模型 API</span><span class="chip">Prompt 工程</span><span class="chip">JavaScript</span><span class="chip">Web 前端</span><span class="chip">DeepSeek API</span><span class="chip">OpenCode</span></div></div></div>
+      <div class="row"><div class="lab">项目亮点</div><div class="val"><ul><li>完成 AI 应用产品化开发，实现面向办公场景的智能辅助生成流程</li><li>提升 PPT 制作效率约 90%</li><li>相关技术成果已申请国家发明专利</li></ul></div></div>
+      <div class="row"><div class="lab">项目价值</div><div class="val">显著降低 PPT 制作中 Prompt 编写成本，提升办公场景 AI 工具使用效率。</div></div>
+      <div class="row"><div class="lab">个人贡献</div><div class="val">负责产品需求分析、Prompt 模板设计及大模型调用流程搭建；设计前端交互页面，实现参考资料解析、PPT 结构规划及生成内容自动整理。</div></div>
+
+      <div class="imgs single">
+        <figure class="img-box"><img src="images/p2_prompt.png" alt="prompt项目"><figcaption>Prompt 项目界面</figcaption></figure>
+      </div>
+    </div>
+  </article>
+
+<!-- 项目三 -->
+  <article class="project reveal" id="p3">
+    <div class="ph"><div class="no">03</div><h3>基于 AI 图像处理的园林假山 CAD 辅助设计工作流</h3><div class="ptag">AI + 园林 · CAD</div></div>
+    <div class="pbody">
+      <div class="row"><div class="lab">项目简介</div><div class="val">针对传统园林设计过程中 CAD 图纸绘制周期长、人工转换成本高的问题，探索 AI 图像处理技术在园林数字化设计流程中的应用。</div></div>
+      <div class="row"><div class="lab">项目背景</div><div class="val">传统园林设计中，CAD 图纸绘制周期长、人工转换成本高，设计效率受限。</div></div>
+      <div class="row"><div class="lab">问题定义</div><div class="val">传统设计流程中，从素材到 CAD 图纸的转换依赖大量重复劳动。</div></div>
+      <div class="row"><div class="lab">解决方案</div><div class="val">结合园林专业背景，负责项目方案设计与技术路线规划；利用 Python 图像处理算法完成设计素材识别、结构信息提取及 CAD 辅助生成流程设计；通过 OpenCode 辅助代码开发，并结合 ChatGPT 等 AI 工具进行方案分析、算法优化及技术文档整理。</div></div>
+      <div class="row"><div class="lab">技术实现</div><div class="val"><div class="techchips"><span class="chip">Python</span><span class="chip">CAD 二次开发接口</span><span class="chip">图像处理算法</span><span class="chip">大模型 API</span><span class="chip">OpenCode</span></div></div></div>
+      <div class="row"><div class="lab">项目亮点</div><div class="val"><ul><li>形成 AI 辅助园林 CAD 设计工作流方案</li><li>降低传统设计流程中的重复劳动，提高数字化设计效率</li><li>完成相关发明专利申请</li></ul></div></div>
+      <div class="row"><div class="lab">项目价值</div><div class="val">将 AI 图像处理技术落地到传统园林设计流程，降低 CAD 图纸转换成本。</div></div>
+      <div class="row"><div class="lab">个人贡献</div><div class="val">结合园林专业背景，负责项目方案设计与技术路线规划；利用 Python 图像处理算法完成设计素材识别、结构信息提取及 CAD 辅助生成流程设计；探索 AI 与传统设计软件融合方式。</div></div>
+
+      <div class="imgs single">
+        <figure class="img-box"><img src="images/p3_mountain.jpg" alt="山"><figcaption>假山 AI 处理 / CAD 工作流</figcaption></figure>
+      </div>
+    </div>
+  </article>
+
+<!-- 项目四 -->
+  <article class="project reveal" id="p4">
+    <div class="ph"><div class="no">04</div><h3>基于 MCP 协议的 Agent 智能自动化工作流</h3><div class="ptag">MCP · Agent</div></div>
+    <div class="pbody">
+      <div class="row"><div class="lab">项目简介</div><div class="val">为 OpenCode 配置 Excel MCP 协议，打通大模型与本地文件系统的交互能力，搭建自动化数据处理工具链。通过自然语言指令驱动 AI Agent 完成批量表格读取、数据填报与结果校验。</div></div>
+      <div class="row"><div class="lab">项目背景</div><div class="val">绿化工程课程作业中包含多份报价表，需进行批量数据读取、填报与校验，属于高频重复性数据处理任务。</div></div>
+      <div class="row"><div class="lab">问题定义</div><div class="val">实际测试中，单次处理耗时约 2 小时，人工录入容易产生格式和数据错误。</div></div>
+      <div class="row"><div class="lab">解决方案</div><div class="val">MCP 提供标准化工具调用接口，使 Agent 能够动态访问本地 Excel 资源，而无需针对每类任务开发独立接口。打通大模型与本地 Excel 的连接——MCP 支持工具即插即用，AI Agent 可直接操控本地文件系统。搭建 OpenCode + DeepSeek API + Excel MCP Server 的调用链路，通过自然语言指令驱动 Agent 自动完成表格处理。</div></div>
+      <div class="row"><div class="lab">技术实现</div><div class="val"><div class="techchips"><span class="chip">OpenCode</span><span class="chip">DeepSeek API</span><span class="chip">MCP 协议</span><span class="chip">Python</span></div></div></div>
+      <div class="row"><div class="lab">项目亮点</div><div class="val"><ul>
+        <li>处理效率：2 小时 → 30 分钟（提升约 4 倍）</li>
+        <li>错误率：约 15% → 约 2%</li>
+        <li>技术选型体现判断力：选择 MCP 而非传统 API</li>
+      </ul></div></div>
+      <div class="row"><div class="lab">项目价值</div><div class="val">将重复性人工数据处理自动化，释放时间用于更高价值的设计分析工作。</div></div>
+      <div class="row"><div class="lab">个人贡献</div><div class="val">独立完成全流程——MCP 环境搭建与配置、Agent 调用链路设计、DeepSeek API 对接、数据校验规则编写、端到端测试与优化。</div></div>
+
+      <div class="imgs">
+        <figure class="img-box"><img src="images/p4_workbuddy.png" alt="OpenCode 去干活的截图"><figcaption>OpenCode + MCP 运行截图</figcaption></figure>
+        <figure class="img-box"><img src="images/p4_collage.jpg" alt="拼图"><figcaption>处理结果拼图</figcaption></figure>
+      </div>
+    </div>
+  </article>
+
+<!-- 项目五 -->
+  <article class="project reveal" id="p5">
+    <div class="ph"><div class="no">05</div><h3>《金钱书》文化主题装饰摆件设计</h3><div class="ptag">原创设计 · 外观专利</div></div>
+    <div class="pbody">
+      <div class="row"><div class="lab">项目类型</div><div class="val">原创产品设计 / 外观设计专利申请</div></div>
+      <div class="row"><div class="lab">设计理念</div><div class="val">以传统钱币文化与植物生长形态结合，通过盘绕式枝干结构表现财富积累与生命成长的寓意。</div></div>
+      <div class="row"><div class="lab">个人贡献</div><div class="val"><ul>
+        <li>产品概念设计</li>
+        <li>3D 建模</li>
+        <li>实体制作</li>
+        <li>外观设计专利申请（申请号：2026301665839）</li>
+      </ul></div></div>
+
+      <div class="imgs single">
+        <figure class="img-box"><img src="images/p5_moneybook.jpg" alt="金钱书设计展示"><figcaption>《金钱书》设计展示</figcaption></figure>
+      </div>
+    </div>
+  </article>
+
+<!-- 项目六 -->
+  <article class="project reveal" id="p6">
+    <div class="ph"><div class="no">06</div><h3>《摇钱树》文化主题装饰摆件设计</h3><div class="ptag">原创设计 · 外观专利</div></div>
+    <div class="pbody">
+      <div class="row"><div class="lab">项目类型</div><div class="val">原创产品设计 / 外观设计专利申请</div></div>
+      <div class="row"><div class="lab">设计理念</div><div class="val">通过树木形态模拟自然生长结构，将植物元素与现代装饰结合。</div></div>
+      <div class="row"><div class="lab">个人贡献</div><div class="val"><ul>
+        <li>产品概念设计</li>
+        <li>3D 建模</li>
+        <li>实体制作</li>
+        <li>外观设计专利申请（申请号：2026301123163）</li>
+      </ul></div></div>
+
+      <div class="imgs single">
+        <figure class="img-box"><img src="images/p6_moneytree.jpg" alt="摇钱树设计展示"><figcaption>《摇钱树》设计展示</figcaption></figure>
+      </div>
+    </div>
+  </article>
+
+<!-- 返回首页 -->
+  <div class="back-home"><a href="index.html"><span class="arw">←</span> 返回首页</a></div>
+
+</section>
+
+<footer class="footer">
+  <b>潘昕</b> · 信息化 / 数字化应用开发作品集 &nbsp;|&nbsp; 内容以 Notion 作品集为准 &nbsp;|&nbsp; © 2026
+</footer>
+
+<script>
+(function(){
+  var els=document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in');});return;}
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target);}});
+  },{threshold:.08});
+  els.forEach(function(e){io.observe(e);});
+})();
+</script>
+
+</body>
+</html>

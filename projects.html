@@ -24,47 +24,63 @@
   <div class="section-head">
     <div class="kicker">PROJECTS</div>
     <h2>项目展示</h2>
-    <p class="sub">共 6 个项目，覆盖 AI 应用开发、全栈工程、自动化工作流与原创产品设计。</p>
+    <p class="sub">共 3 个项目，覆盖多 Agent 协同、Agent 工作流与 AI 应用开发。</p>
   </div>
 
   <!-- 项目一 -->
   <article class="project reveal" id="p1">
-    <div class="ph"><div class="no">01</div><h3>跨平台 AI 桌面宠物全栈开发</h3><div class="ptag">Electron · 全栈</div></div>
+    <div class="ph"><div class="no">01</div><h3>AgentFlow：基于多Agent协同的Excel智能数据处理系统</h3><div class="ptag">多 Agent · MCP</div></div>
     <div class="pbody">
-      <div class="row"><div class="lab">项目简介</div><div class="val">针对传统桌面应用功能单一、缺少智能交互能力的问题，设计并开发一款跨平台 AI 桌面宠物应用，实现桌面端交互、用户管理、数据存储及 AI 能力融合。</div></div>
-      <div class="row"><div class="lab">项目背景</div><div class="val">传统桌面应用功能单一、缺少智能交互能力，无法满足用户对轻量级智能陪伴工具的需求。</div></div>
-      <div class="row"><div class="lab">问题定义</div><div class="val">现有桌面应用缺乏 AI 交互能力，数据管理与服务端架构相对薄弱。</div></div>
-      <div class="row"><div class="lab">解决方案</div><div class="val">独立完成 Electron 桌面端与 Web 服务端整体架构设计，基于 Node.js 搭建后端服务，实现用户认证、SQLite 数据持久化及前后端通信机制；结合 OpenCode 辅助开发流程，引入 DeepSeek API 实现 AI 交互能力。</div></div>
-      <div class="row"><div class="lab">技术实现</div><div class="val"><div class="techchips"><span class="chip">Electron</span><span class="chip">Node.js</span><span class="chip">Express</span><span class="chip">SQLite</span><span class="chip">JWT</span><span class="chip">IPC 通信</span><span class="chip">DeepSeek API</span><span class="chip">OpenCode</span></div></div></div>
-      <div class="row"><div class="lab">项目亮点</div><div class="val"><ul><li>完成从需求分析、架构设计到功能实现的完整开发流程</li><li>实现 Windows 平台桌面应用部署运行</li><li>积累 AI 应用与全栈开发实践经验</li></ul></div></div>
-      <div class="row"><div class="lab">项目价值</div><div class="val">形成完整的 AI 桌面应用开发闭环，覆盖前端、后端、数据持久化与智能交互。</div></div>
-      <div class="row"><div class="lab">个人贡献</div><div class="val">独立完成 Electron 桌面端与 Web 服务端整体架构设计；基于 Node.js 搭建后端服务，实现用户认证、SQLite 数据持久化及前后端通信机制；结合 OpenCode 引入 DeepSeek API，完成客户端功能模块设计、接口调试及系统联调。</div></div>
+      <div class="row"><div class="lab">项目简介</div><div class="val">把一句话办公需求变成可校验、可追溯、可控成本的自动化执行。针对单 Agent 处理办公表格时职责混淆、易编造数据、成本不可控的问题，设计多 Agent 协同平台，覆盖多表核对 / 对账、批量填报、数据清洗三类场景，实现从规划、查数、执行、校验到报告的自动化闭环。</div></div>
+      <div class="row"><div class="lab">项目背景</div><div class="val">办公场景中大量表格任务（对账、批量填报、数据清洗）属于高频重复劳动；单 Agent 方案把规划、写表、校验混在一个循环里，出错难定位、幻觉难兜底、token 成本不可控。</div></div>
+      <div class="row"><div class="lab">问题定义</div><div class="val">1）职责混淆：规划 / 查数 / 执行 / 校验耦合，出错难定位；2）幻觉叠加：模型既当运动员又当裁判，写了错值没人纠；3）成本失控：所有决策都走 LLM，token 消耗不可控。</div></div>
+      <div class="row"><div class="lab">解决方案</div><div class="val">以「LLM 只做决策、代码守底线」为原则：用自研 Orchestrator 状态机调度 5 个职责隔离 Agent（Planner / Retrieval / Executor / Verifier / Reporter），Agent 间通过共享黑板（Blackboard）串行协作。关键设计是把校验判定用确定性代码写死（Verifier 不调用大模型），堵死多 Agent 互相放大幻觉；配套全局 Token 预算熔断、数据强制溯源（查不到标 not_found、绝不编造）、写前自动备份、写后代码级校验、人工审批门与确定性兜底。引擎与场景解耦，换场景只改一个 JSON。</div></div>
+      <div class="row"><div class="lab">技术实现</div><div class="val"><div class="techchips"><span class="chip">Python</span><span class="chip">DeepSeek API</span><span class="chip">Function Calling</span><span class="chip">MCP 协议</span><span class="chip">多 Agent 协同</span><span class="chip">状态机编排</span><span class="chip">共享黑板</span><span class="chip">Flask</span><span class="chip">openpyxl</span></div></div></div>
+      <div class="row"><div class="lab">项目亮点</div><div class="val"><ul>
+        <li>用确定性校验替代"让模型自证正确"：结论由代码背书而非模型自评，可信度可复现</li>
+        <li>真实评测：多表核对任务在正确率持平（3/3）的前提下，tokens 较单 Agent 基线降低 64%（29,344 vs 81,429）</li>
+        <li>全链路护栏：Token 预算熔断 + 成本分账、数据强制溯源、写前备份、校验失败自动带反馈重规划</li>
+        <li>自研轻量状态机而非套用框架：可控、可观测、可回放（黑板 + 轨迹 + 报告全量落盘）</li>
+        <li>v2.1 支持多文件并行：17 张报价表 2.07s → 1.22s，约 1.7x 提速</li>
+      </ul></div></div>
+      <div class="row"><div class="lab">项目价值</div><div class="val">把"大模型能填表"推进到"多 Agent 协同 + 结果可信 + 成本可控"，形成可复用的通用引擎，同一套引擎适配不同客户场景。</div></div>
+      <div class="row"><div class="lab">个人贡献</div><div class="val">独立完成 Orchestrator 状态机与 5 个职责隔离 Agent 的架构设计与开发；实现共享黑板协作、确定性校验规则库、Token 预算与成本分账、全链路护栏与多文件并行执行；以 v1 单 Agent 版为基线完成 A/B 评测。</div></div>
 
       <div class="imgs single">
-        <figure class="img-box"><img src="images/p1_flow.jpg" alt="系统流程图"><figcaption>系统流程图</figcaption></figure>
-      </div>
-
-      <div class="imgs">
-        <figure class="img-box"><img src="images/p1_login.png" alt="登录和注册页面"><figcaption>登录和注册页面</figcaption></figure>
-        <figure class="img-box"><img src="images/p1_main.png" alt="更换宠物图片"><figcaption>更换宠物图片 / 主要功能</figcaption></figure>
-      </div>
-
-      <div class="video-box">
-        <video src="images/p1_video.mp4" controls preload="metadata"></video>
-        <figcaption>项目演示视频</figcaption>
-      </div>
-
-      <div class="card" style="margin-top:26px;background:var(--bg-warm);">
-        <strong style="color:var(--green);font-family:var(--sans);font-size:16px;">PRD 摘要（产品需求文档.pdf）</strong>
-        <p style="font-size:14.5px;color:var(--muted);margin-top:10px;">文档包含项目背景、用户角色、功能需求（注册 / 登录 / 宠物交互）、非功能性需求与验收标准。核心数据流：用户 → POST /api/register|login → 后端 bcrypt 验证 → JWT 签发令牌 → login-success IPC → 主进程打开宠物窗口；存储层由 pet_users.db（SQLite）承载。</p>
-        <a class="dl-btn" href="images/p1_prd.pdf" target="_blank" download><span class="ic">⬇</span> 下载产品需求文档（PDF）</a>
+        <figure class="img-box"><img src="images/p1_agentflow.png" alt="AgentFlow 界面"><figcaption>AgentFlow 界面</figcaption></figure>
       </div>
     </div>
   </article>
 
 <!-- 项目二 -->
   <article class="project reveal" id="p2">
-    <div class="ph"><div class="no">02</div><h3>AI 提示词自动化生成与 PPT 定制工具</h3><div class="ptag">视觉大模型 · Prompt</div></div>
+    <div class="ph"><div class="no">02</div><h3>Sketch2CAD：图像到CAD图纸的多Agent矢量化系统</h3><div class="ptag">多 Agent · 图像/CAD</div></div>
+    <div class="pbody">
+      <div class="row"><div class="lab">项目简介</div><div class="val">针对"图片 / 线稿转可编辑 CAD 图纸"这一高频重复劳动，设计并实现「图像清洗 → 精确矢量化 → 多 Agent 协同 → 渲染回图客观仲裁」系统，覆盖工程图与假山等有机形状双场景，输出可编辑 DXF。</div></div>
+      <div class="row"><div class="lab">项目背景</div><div class="val">传统 CAD 制图中"把图片重新画成矢量图"是完全的重复劳动：人工描图慢、易错、成本高；传统光栅转矢量工具只会描像素边界，输出成千上万条碎线段，不懂"这是直线 / 圆 / 标注"。</div></div>
+      <div class="row"><div class="lab">问题定义</div><div class="val">纯大模型能"看图写代码"，但给不出精确坐标，画出来"大概像"、尺寸对不上；传统矢量化工具又不懂语义。业界尚无"一键全自动出完美 CAD"的方案。</div></div>
+      <div class="row"><div class="lab">解决方案</div><div class="val">核心思路「精确的事交给算法，理解的事交给 AI，对错由渲染回图的客观指标裁决」。①图像清洗层（二值化 / 去噪 / 图框标题栏剔除 / 剖面线剔除）→ ②确定性 CV 矢量化（HoughLinesP / HoughCircles / Kasa 圆拟合 / 椭圆检测）+ 图元装配（共线合并 / 角度吸附 / 矩形装配）→ ③多 Agent 协同（识别 / 提取 / 校验 / 决策，LangGraph 编排）→ ④渲染回图客观仲裁，取 SSIM 最优并保最优回退。工程图走多臂集成流水线，假山等自由曲线走 Potrace 纯本地离线通道。</div></div>
+      <div class="row"><div class="lab">技术实现</div><div class="val"><div class="techchips"><span class="chip">Python</span><span class="chip">OpenCV</span><span class="chip">RANSAC</span><span class="chip">LangGraph</span><span class="chip">ezdxf</span><span class="chip">RapidOCR</span><span class="chip">通义千问 VLM</span><span class="chip">DeepSeek</span><span class="chip">Potrace</span></div></div></div>
+      <div class="row"><div class="lab">项目亮点</div><div class="val"><ul>
+        <li>多臂集成 + 客观仲裁：A(CV) / B(纯语义) / C / D(融合) / DS(DeepSeek 直画) 多路线并行提案，渲染回图比 SSIM 取最优，保证输出永不差于当轮基线</li>
+        <li>A/B/C/D/E + DS 对照实验发现规律：接地式生成在 CV 可靠时最优、纯语义 / 大模型整体生成在 CV 失效时更稳，据此设计集成仲裁</li>
+        <li>校验信号必须客观：不让 AI 自评，用"渲染回图 + 像素 / 结构指标（SSIM / IoU / Chamfer）"做外部裁判</li>
+        <li>图元装配把"碎线"变成"结构化形状"，输出更干净、可编辑</li>
+        <li>简单 / 中等图 SSIM 0.75~0.84，复杂装配图较基线 0.38→0.63；相关成果已申请国家发明专利</li>
+      </ul></div></div>
+      <div class="row"><div class="lab">项目价值</div><div class="val">把"图片转可编辑 CAD"落地为辅助级矢量化工具（AI 出 70~80% 初稿、人工精修），按图形类型分流，覆盖工程图与假山双场景。</div></div>
+      <div class="row"><div class="lab">个人贡献</div><div class="val">独立完成整体架构与核心开发；基于 OpenCV / RANSAC 实现多种几何装配；用 LangGraph 编排识别、提取、校验、决策四个 Agent，以"渲染回图比对"驱动迭代与保最优；通过多臂对照实验提出"多臂集成 + 客观仲裁"方案。</div></div>
+
+      <div class="imgs">
+        <figure class="img-box"><img src="images/p2_cad.png" alt="CAD 矢量化效果"><figcaption>CAD 矢量化效果</figcaption></figure>
+        <figure class="img-box"><img src="images/p3_mountain.jpg" alt="假山 / CAD 矢量化"><figcaption>假山 / CAD 矢量化工作流</figcaption></figure>
+      </div>
+    </div>
+  </article>
+
+<!-- 项目三 -->
+  <article class="project reveal" id="p3">
+    <div class="ph"><div class="no">03</div><h3>AI 提示词自动化生成与 PPT 定制工具</h3><div class="ptag">视觉大模型 · Prompt</div></div>
     <div class="pbody">
       <div class="row"><div class="lab">项目简介</div><div class="val">针对用户制作 PPT 时需求描述不清晰、Prompt 编写成本高的问题，设计 AI 提示词自动生成工具，将自然语言需求转换为结构化 PPT 生成指令。</div></div>
       <div class="row"><div class="lab">项目背景</div><div class="val">PPT 制作中用户常因需求描述不清晰而反复调试 Prompt，提示词编写成本高。</div></div>
@@ -76,88 +92,7 @@
       <div class="row"><div class="lab">个人贡献</div><div class="val">负责产品需求分析、Prompt 模板设计及大模型调用流程搭建；设计前端交互页面，实现参考资料解析、PPT 结构规划及生成内容自动整理。</div></div>
 
       <div class="imgs single">
-        <figure class="img-box"><img src="images/p2_prompt.png" alt="prompt项目"><figcaption>Prompt 项目界面</figcaption></figure>
-      </div>
-    </div>
-  </article>
-
-<!-- 项目三 -->
-  <article class="project reveal" id="p3">
-    <div class="ph"><div class="no">03</div><h3>基于 AI 图像处理的园林假山 CAD 辅助设计工作流</h3><div class="ptag">AI + 园林 · CAD</div></div>
-    <div class="pbody">
-      <div class="row"><div class="lab">项目简介</div><div class="val">针对传统园林设计过程中 CAD 图纸绘制周期长、人工转换成本高的问题，探索 AI 图像处理技术在园林数字化设计流程中的应用。</div></div>
-      <div class="row"><div class="lab">项目背景</div><div class="val">传统园林设计中，CAD 图纸绘制周期长、人工转换成本高，设计效率受限。</div></div>
-      <div class="row"><div class="lab">问题定义</div><div class="val">传统设计流程中，从素材到 CAD 图纸的转换依赖大量重复劳动。</div></div>
-      <div class="row"><div class="lab">解决方案</div><div class="val">结合园林专业背景，负责项目方案设计与技术路线规划；利用 Python 图像处理算法完成设计素材识别、结构信息提取及 CAD 辅助生成流程设计；通过 OpenCode 辅助代码开发，并结合 ChatGPT 等 AI 工具进行方案分析、算法优化及技术文档整理。</div></div>
-      <div class="row"><div class="lab">技术实现</div><div class="val"><div class="techchips"><span class="chip">Python</span><span class="chip">CAD 二次开发接口</span><span class="chip">图像处理算法</span><span class="chip">大模型 API</span><span class="chip">OpenCode</span></div></div></div>
-      <div class="row"><div class="lab">项目亮点</div><div class="val"><ul><li>形成 AI 辅助园林 CAD 设计工作流方案</li><li>降低传统设计流程中的重复劳动，提高数字化设计效率</li><li>完成相关发明专利申请</li></ul></div></div>
-      <div class="row"><div class="lab">项目价值</div><div class="val">将 AI 图像处理技术落地到传统园林设计流程，降低 CAD 图纸转换成本。</div></div>
-      <div class="row"><div class="lab">个人贡献</div><div class="val">结合园林专业背景，负责项目方案设计与技术路线规划；利用 Python 图像处理算法完成设计素材识别、结构信息提取及 CAD 辅助生成流程设计；探索 AI 与传统设计软件融合方式。</div></div>
-
-      <div class="imgs single">
-        <figure class="img-box"><img src="images/p3_mountain.jpg" alt="山"><figcaption>假山 AI 处理 / CAD 工作流</figcaption></figure>
-      </div>
-    </div>
-  </article>
-
-<!-- 项目四 -->
-  <article class="project reveal" id="p4">
-    <div class="ph"><div class="no">04</div><h3>基于 MCP 协议的 Agent 智能自动化工作流</h3><div class="ptag">MCP · Agent</div></div>
-    <div class="pbody">
-      <div class="row"><div class="lab">项目简介</div><div class="val">为 OpenCode 配置 Excel MCP 协议，打通大模型与本地文件系统的交互能力，搭建自动化数据处理工具链。通过自然语言指令驱动 AI Agent 完成批量表格读取、数据填报与结果校验。</div></div>
-      <div class="row"><div class="lab">项目背景</div><div class="val">绿化工程课程作业中包含多份报价表，需进行批量数据读取、填报与校验，属于高频重复性数据处理任务。</div></div>
-      <div class="row"><div class="lab">问题定义</div><div class="val">实际测试中，单次处理耗时约 2 小时，人工录入容易产生格式和数据错误。</div></div>
-      <div class="row"><div class="lab">解决方案</div><div class="val">MCP 提供标准化工具调用接口，使 Agent 能够动态访问本地 Excel 资源，而无需针对每类任务开发独立接口。打通大模型与本地 Excel 的连接——MCP 支持工具即插即用，AI Agent 可直接操控本地文件系统。搭建 OpenCode + DeepSeek API + Excel MCP Server 的调用链路，通过自然语言指令驱动 Agent 自动完成表格处理。</div></div>
-      <div class="row"><div class="lab">技术实现</div><div class="val"><div class="techchips"><span class="chip">OpenCode</span><span class="chip">DeepSeek API</span><span class="chip">MCP 协议</span><span class="chip">Python</span></div></div></div>
-      <div class="row"><div class="lab">项目亮点</div><div class="val"><ul>
-        <li>处理效率：2 小时 → 30 分钟（提升约 4 倍）</li>
-        <li>错误率：约 15% → 约 2%</li>
-        <li>技术选型体现判断力：选择 MCP 而非传统 API</li>
-      </ul></div></div>
-      <div class="row"><div class="lab">项目价值</div><div class="val">将重复性人工数据处理自动化，释放时间用于更高价值的设计分析工作。</div></div>
-      <div class="row"><div class="lab">个人贡献</div><div class="val">独立完成全流程——MCP 环境搭建与配置、Agent 调用链路设计、DeepSeek API 对接、数据校验规则编写、端到端测试与优化。</div></div>
-
-      <div class="imgs">
-        <figure class="img-box"><img src="images/p4_workbuddy.png" alt="OpenCode 去干活的截图"><figcaption>OpenCode + MCP 运行截图</figcaption></figure>
-        <figure class="img-box"><img src="images/p4_collage.jpg" alt="拼图"><figcaption>处理结果拼图</figcaption></figure>
-      </div>
-    </div>
-  </article>
-
-<!-- 项目五 -->
-  <article class="project reveal" id="p5">
-    <div class="ph"><div class="no">05</div><h3>《金钱书》文化主题装饰摆件设计</h3><div class="ptag">原创设计 · 外观专利</div></div>
-    <div class="pbody">
-      <div class="row"><div class="lab">项目类型</div><div class="val">原创产品设计 / 外观设计专利（已受理）</div></div>
-      <div class="row"><div class="lab">设计理念</div><div class="val">以传统钱币文化与植物生长形态结合，通过盘绕式枝干结构表现财富积累与生命成长的寓意。</div></div>
-      <div class="row"><div class="lab">个人贡献</div><div class="val"><ul>
-        <li>产品概念设计</li>
-        <li>3D 建模</li>
-        <li>实体制作</li>
-        <li>外观设计专利（申请号：2026301665839，已受理）</li>
-      </ul></div></div>
-
-      <div class="imgs single">
-        <figure class="img-box"><img src="images/p5_moneybook.jpg" alt="金钱书设计展示"><figcaption>《金钱书》设计展示</figcaption></figure>
-      </div>
-    </div>
-  </article>
-
-<!-- 项目六 -->
-  <article class="project reveal" id="p6">
-    <div class="ph"><div class="no">06</div><h3>《摇钱树》文化主题装饰摆件设计</h3><div class="ptag">原创设计 · 外观专利</div></div>
-    <div class="pbody">
-      <div class="row"><div class="lab">项目类型</div><div class="val">原创产品设计 / 外观设计专利（已授权）</div></div>
-      <div class="row"><div class="lab">设计理念</div><div class="val">通过树木形态模拟自然生长结构，将植物元素与现代装饰结合。</div></div>
-      <div class="row"><div class="lab">个人贡献</div><div class="val"><ul>
-        <li>产品概念设计</li>
-        <li>3D 建模</li>
-        <li>实体制作</li>
-        <li>外观设计专利（申请号：2026301123163，已授权）</li>
-      </ul></div></div>
-
-      <div class="imgs single">
-        <figure class="img-box"><img src="images/p6_moneytree.jpg" alt="摇钱树设计展示"><figcaption>《摇钱树》设计展示</figcaption></figure>
+        <figure class="img-box"><img src="images/p2_prompt.png" alt="Prompt 项目界面"><figcaption>Prompt 项目界面</figcaption></figure>
       </div>
     </div>
   </article>

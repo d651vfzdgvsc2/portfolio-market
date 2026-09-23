@@ -493,8 +493,9 @@ img{max-width:100%;display:block;}
 .hero-actions{margin-top:34px;display:flex;gap:14px;flex-wrap:wrap;}
 .hero-btn{
   display:inline-flex;align-items:center;gap:9px;
-  background:linear-gradient(120deg,var(--gold),var(--gold-soft));color:#16324F;
+  background:#FFFFFF;color:#16324F;
   font-size:15px;font-weight:700;padding:13px 30px;border-radius:999px;letter-spacing:.5px;
-  box-shadow:0 8px 22px rgba(184,137,59,.32);transition:transform .25s,box-shadow .25s;
+  box-shadow:0 8px 22px rgba(0,0,0,.18);transition:transform .25s,box-shadow .25s;
 }
-.hero-btn:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(184,137,59,.42);}
+.hero-btn:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(0,0,0,.26);}
+.hero-btn .ic{color:var(--gold);}

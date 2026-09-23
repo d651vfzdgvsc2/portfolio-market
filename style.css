@@ -480,8 +480,11 @@ img{max-width:100%;display:block;}
 .bottom-nav a.active{color:#fff;font-weight:600;}
 .bottom-nav a.active .bi{color:var(--gold);}
 
+.page-ind{display:none;color:#fff;font-size:15px;font-weight:600;letter-spacing:1px;font-family:var(--serif);}
+
 @media (max-width:880px){
   .nav-links{display:none !important;}
+  .page-ind{display:inline-block;}
   .bottom-nav{display:flex;}
   body{padding-bottom:70px;}
   .entry-cards{grid-template-columns:1fr;}

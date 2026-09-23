@@ -415,7 +415,7 @@ img{max-width:100%;display:block;}
 
 /* ============ 打印样式（央国企 HR 可能打印） ============ */
 @media print{
-  .nav,.back-home,.dl-btn,.cta{display:none !important;}
+  .nav,.bottom-nav,.back-home,.dl-btn,.cta{display:none !important;}
   body{background:#fff;color:#000;}
   .hero{background:#16324F !important;-webkit-print-color-adjust:exact;print-color-adjust:exact;padding:40px 0;}
   .section{padding:24px 0;}
@@ -438,3 +438,53 @@ img{max-width:100%;display:block;}
 /* 项目首图（深蓝+金主题；市场站已按需移除该元素，保留规则以防残留） */
 .project .heroimg{margin:22px 0 4px;}
 .project .heroimg img{width:100%;height:auto;max-height:520px;object-fit:contain;border-radius:12px;background:#fff;border:1px solid var(--line);}
+
+/* ============ 首页成果入口大卡 ============ */
+.entry-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;}
+.entry-card{
+  position:relative;display:flex;align-items:center;gap:22px;
+  background:var(--card);border:1px solid var(--line);border-radius:18px;
+  padding:30px 32px;box-shadow:var(--shadow-sm);color:inherit;text-decoration:none;
+  overflow:hidden;transition:transform .3s,box-shadow .3s;
+}
+.entry-card::before{
+  content:"";position:absolute;left:0;top:0;bottom:0;width:6px;
+  background:linear-gradient(180deg,var(--blue),var(--green));
+}
+.entry-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);}
+.entry-card .ec-ico{
+  flex-shrink:0;width:58px;height:58px;border-radius:15px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:24px;font-weight:800;color:var(--blue);font-family:var(--serif);
+  background:linear-gradient(135deg,rgba(22,50,79,.1),rgba(36,92,70,.12));
+}
+.entry-card .ec-body{flex:1;min-width:0;}
+.entry-card h3{font-family:var(--serif);font-size:21px;color:var(--blue);font-weight:800;margin-bottom:6px;}
+.entry-card p{font-size:14px;color:var(--muted);line-height:1.7;}
+.entry-card .ec-arw{margin-left:auto;font-size:22px;color:var(--gold);flex-shrink:0;transition:transform .3s;}
+.entry-card:hover .ec-arw{transform:translateX(6px);}
+
+/* ============ 移动端底部导航（桌面隐藏，手机显示） ============ */
+.bottom-nav{
+  display:none;position:fixed;left:0;right:0;bottom:0;z-index:80;
+  background:rgba(22,50,79,.97);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  border-top:1px solid rgba(255,255,255,.1);
+  padding:6px 10px calc(6px + env(safe-area-inset-bottom,0px));
+}
+.bottom-nav a{
+  flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;
+  color:#9FB0C0;font-size:12px;padding:8px 0;text-decoration:none;border-radius:10px;
+  transition:color .2s;
+}
+.bottom-nav a .bi{font-size:19px;line-height:1;}
+.bottom-nav a.active{color:#fff;font-weight:600;}
+.bottom-nav a.active .bi{color:var(--gold);}
+
+@media (max-width:880px){
+  .nav-links{display:none !important;}
+  .bottom-nav{display:flex;}
+  body{padding-bottom:70px;}
+  .entry-cards{grid-template-columns:1fr;}
+  .entry-card{padding:24px 22px;gap:16px;}
+  .entry-card h3{font-size:19px;}
+}

@@ -71,22 +71,28 @@
 
 <section class="section reveal" style="background:rgba(255,255,255,.55);border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
   <div class="section-head">
-    <div class="kicker">HIGHLIGHTS</div>
-    <h2>能力概览</h2>
-    <p class="sub">五个方向，覆盖从工具应用到成果专利化的完整链条。</p>
+    <div class="kicker">WORKS</div>
+    <h2>我的成果</h2>
+    <p class="sub">3 个项目、4 项专利，点一下直接看。</p>
   </div>
-  <div class="grid-3">
-    <div class="ability"><div class="ico">AI</div><h3>AI 工具应用</h3><p>熟练调用大模型 API，将生成式 AI 落地到办公与设计场景。</p></div>
-    <div class="ability"><div class="ico">AG</div><h3>Agent 智能工作流</h3><p>基于 MCP 协议搭建自动化工具链，用自然语言驱动任务执行。</p></div>
-    <div class="ability"><div class="ico">DEV</div><h3>AI 应用开发</h3><p>Node.js 全栈、RESTful API、本地数据库与认证体系设计。</p></div>
-    <div class="ability"><div class="ico">PD</div><h3>产品设计与建模</h3><p>从概念设计、3D 建模到实体制作，具备原创产品设计能力。</p></div>
-    <div class="ability"><div class="ico">IP</div><h3>知识产权创新</h3><p>2 项发明专利 + 2 项外观设计专利，均为第一发明 / 设计人。</p></div>
-    <div class="ability"><div class="ico">↻</div><h3>闭环能力</h3><p>发现问题 → AI 辅助 → 产品设计 → 成果输出，形成完整闭环。</p></div>
+  <div class="entry-cards">
+    <a class="entry-card" href="projects.html">
+      <div class="ec-ico">▦</div>
+      <div class="ec-body">
+        <h3>项目展示</h3>
+        <p>3 个完整项目 · 多 Agent 协同办公数据处理 / 图像转 CAD 矢量化 / AI 提示词与 PPT 定制工具</p>
+      </div>
+      <div class="ec-arw">→</div>
+    </a>
+    <a class="entry-card" href="patents.html">
+      <div class="ec-ico">◎</div>
+      <div class="ec-body">
+        <h3>专利成果</h3>
+        <p>4 项国家专利 · 2 项发明专利 + 2 项外观设计专利，其中 1 项外观设计已授权</p>
+      </div>
+      <div class="ec-arw">→</div>
+    </a>
   </div>
-</section>
-
-<section class="section reveal" style="text-align:center;">
-  <a href="projects.html" class="cta">查看完整项目展示 <span class="arw">→</span></a>
 </section>
 
 <script>
@@ -100,6 +106,13 @@
   els.forEach(function(e){io.observe(e);});
 })();
 </script>
+
+<nav class="bottom-nav">
+  <a href="index.html" class="active"><span class="bi">⌂</span>首页</a>
+  <a href="projects.html"><span class="bi">▦</span>项目</a>
+  <a href="patents.html"><span class="bi">◎</span>专利</a>
+  <a href="contact.html"><span class="bi">✉</span>联系</a>
+</nav>
 
 </body>
 </html>

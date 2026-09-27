@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>实习经历 · 潘昕作品集</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="brand">潘昕<span>·</span>作品集</div>
+    <div class="nav-links">
+      <a href="index.html">首页</a>
+      <a href="internship.html" class="active">实习经历</a>
+      <a href="projects.html">项目展示</a>
+      <a href="patents.html">专利成果</a>
+      <a href="contact.html">联系方式</a>
+    </div>
+    <span class="page-ind">实习经历</span>
+  </div>
+</nav>
+
+<section class="section">
+  <div class="section-head">
+    <div class="kicker">EXPERIENCE</div>
+    <h2>实习经历</h2>
+    <p class="sub">一段政企 AI 项目从 0 到 1 的完整交付实践。</p>
+  </div>
+
+  <article class="project reveal" id="intern">
+    <div class="ph"><h3>粤语多模态 AI Agent POC（面向香港政务 / 公共教育场景 · 政企项目）</h3><div class="ptag">政企 · 0→1 交付</div></div>
+    <div class="pbody">
+      <div class="row"><div class="lab">实习单位</div><div class="val">广州市科传计算机科技股份有限公司 · AI 实习生（2026.08 – 至今）</div></div>
+      <div class="row"><div class="lab">角色定位</div><div class="val">核心负责人 · 从 0 到 1 主导（本人承担约 80%）</div></div>
+      <div class="row"><div class="lab">项目简介</div><div class="val">把「粤语学习 × AI」从想法做成能演示、能落地的政企产品。面向香港政务 / 公共教育场景，主导搭建粤语多模态 AI Agent POC，整合 ASR、TTS 与大模型 Agent 能力，打通学生端 + 教师端全链路，完成本地联调与公网部署。</div></div>
+      <div class="row"><div class="lab">我的职责</div><div class="val"><ul>
+        <li>端到端主导：从需求拆解、方案设计与技术选型，到集成开发、部署上线、客户演示，全程负责</li>
+        <li>独立完成 3 家 ASR/TTS 厂商 API 接入与参数调优，攻克粤语识别、中英混合语言检测等落地难点</li>
+        <li>设计与实现 AI 教练的 Agent 教学逻辑：实时判断学生语种与表达，自动选择教学动作（持续引导回粤语 / 自然纠错 / 开启新话题），实现个性化陪练</li>
+        <li>设计成本与调用控制：自由聊天按 8 小时窗口限制最多 50 轮，翻译 / 查词按 1 小时窗口设 30–100 次配额，配合发音评分结果缓存与超限自动收尾，控制大模型与语音 API 的 token / 调用成本</li>
+        <li>打通学生端与教师端，交付完整的学习闭环产品，而非单点 Demo</li>
+        <li>代表项目对公司领导汇报、对客户方进行 POC 演示，推动项目从内部验证走向市场</li>
+        <li>协同团队排查接口、部署与模型调用异常，输出可对外演示的 POC 原型</li>
+      </ul></div></div>
+      <div class="row"><div class="lab">技术实现</div><div class="val"><div class="techchips"><span class="chip">ASR / TTS</span><span class="chip">多厂商语音接入（豆包 / 阿里 / 讯飞）</span><span class="chip">粤语识别 / 中英混检</span><span class="chip">大模型 Agent（语种自适应教学）</span><span class="chip">成本 / 调用控制</span><span class="chip">Web / Node.js</span><span class="chip">公网部署</span></div></div></div>
+      <div class="row"><div class="lab">项目亮点</div><div class="val"><ul>
+        <li>3 周内完成 POC 上线，并具备对外演示能力</li>
+        <li>从 0 到 1 拿到客户方采购意向 —— 项目走向商业化的关键一步</li>
+        <li>独立承担约 80%，含学生端 / 教师端整合与全部对外演示</li>
+      </ul></div></div>
+      <div class="row"><div class="lab">项目价值</div><div class="val">完整走通「需求拆解 → 集成 → 部署上线 → 客户演示 → 推动采购」的政企 AI 交付链路，证明的不只是「会写代码」，而是「能独立把 AI 项目落地并推向市场」。</div></div>
+
+      <div class="imgs single">
+        <figure class="img-box"><img src="images/internship_flow.svg" alt="系统架构与数据流" style="max-height:none;background:#fff;"><figcaption>系统架构与数据流（自绘）</figcaption></figure>
+      </div>
+      <div class="imgs single">
+        <figure class="img-box"><img src="images/internship_home.png" alt="产品界面"><figcaption>产品界面（演示环境 · 数据为模拟）</figcaption></figure>
+      </div>
+
+      <div class="row" style="margin-top:24px;"><div class="lab">保密说明</div><div class="val">因涉及政企项目，本页为脱敏描述；界面截图为演示环境、数据均为模拟，不含客户名称与真实数据。</div></div>
+    </div>
+  </article>
+
+  <div class="back-home"><a href="index.html"><span class="arw">←</span> 返回首页</a></div>
+</section>
+
+<script>
+(function(){
+  var els=document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in');});return;}
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target);}});
+  },{threshold:.08});
+  els.forEach(function(e){io.observe(e);});
+})();
+</script>
+
+<nav class="bottom-nav">
+  <a href="index.html"><span class="bi">⌂</span>首页</a>
+  <a href="internship.html" class="active"><span class="bi">◈</span>实习</a>
+  <a href="projects.html"><span class="bi">▦</span>项目</a>
+  <a href="patents.html"><span class="bi">◎</span>专利</a>
+  <a href="contact.html"><span class="bi">✉</span>联系</a>
+</nav>
+
+</body>
+</html>

@@ -44,9 +44,12 @@
         <li>全链路护栏：Token 预算熔断 + 成本分账、数据强制溯源、写前备份、校验失败自动带反馈重规划</li>
         <li>自研轻量状态机而非套用框架：可控、可观测、可回放（黑板 + 轨迹 + 报告全量落盘）</li>
         <li>v2.1 支持多文件并行：17 张报价表 2.07s → 1.22s，约 1.7x 提速</li>
+        <li>产品化交付：Web 端支持上传单个文件或整个文件夹，上传即自动锁定处理范围（用户传什么就只处理什么，杜绝模型按文字"猜路径"），上传后可预览核对，结果一键下载回原 Excel（不打包、无二次解压）</li>
+        <li>清洗安全闭环：清洗结论结构化可视化（重复记录 + 缺失字段逐条列出），并从机制上堵死"把清洗报告写回数据表"的污染路径（执行器只允许补空缺、禁止加列/写报告）</li>
+        <li>数据补齐：新增「按基准合并补齐」——两表按关键列合并成一张完整表，只补空、不覆盖、带来源列留痕</li>
       </ul></div></div>
       <div class="row"><div class="lab">项目价值</div><div class="val">把"大模型能填表"推进到"多 Agent 协同 + 结果可信 + 成本可控"，形成可复用的通用引擎，同一套引擎适配不同客户场景。</div></div>
-      <div class="row"><div class="lab">个人贡献</div><div class="val">独立完成 Orchestrator 状态机与 5 个职责隔离 Agent 的架构设计与开发；实现共享黑板协作、确定性校验规则库、Token 预算与成本分账、全链路护栏与多文件并行执行；以 v1 单 Agent 版为基线完成 A/B 评测。</div></div>
+      <div class="row"><div class="lab">个人贡献</div><div class="val">独立完成 Orchestrator 状态机与 5 个职责隔离 Agent 的架构设计与开发；实现共享黑板协作、确定性校验规则库、Token 预算与成本分账、全链路护栏与多文件并行执行；落地可交付的 Web 界面（上传即锁定处理范围、结果一键直下）与清洗防污染机制；以 v1 单 Agent 版为基线完成 A/B 评测。</div></div>
 
       <div style="margin-top:18px;">
         <a class="dl-btn" href="https://github.com/d651vfzdgvsc2/agentflow" target="_blank" rel="noopener" style="background:linear-gradient(120deg,#16324F,#1F4468);box-shadow:0 4px 12px rgba(22,50,79,.25);"><span class="ic">↗</span> 查看源码（GitHub）</a>
@@ -57,7 +60,7 @@
       </div>
 
       <div class="imgs single">
-        <figure class="img-box"><img src="images/p1_agentflow.png" alt="AgentFlow 界面"><figcaption>AgentFlow 界面</figcaption></figure>
+        <figure class="img-box"><img src="images/agentflow_result.png" alt="AgentFlow 对账结果界面"><figcaption>AgentFlow 界面 · 对账结果与执行报告</figcaption></figure>
       </div>
 
       <div class="card" style="margin-top:26px;background:var(--bg-warm);">
@@ -75,17 +78,19 @@
       <div class="row"><div class="lab">项目简介</div><div class="val">针对"图片 / 线稿转可编辑 CAD 图纸"这一高频重复劳动，设计并实现「图像清洗 → 精确矢量化 → 多 Agent 协同 → 渲染回图客观仲裁」系统，覆盖工程图与假山等有机形状双场景，输出可编辑 DXF。</div></div>
       <div class="row"><div class="lab">项目背景</div><div class="val">传统 CAD 制图中"把图片重新画成矢量图"是完全的重复劳动：人工描图慢、易错、成本高；传统光栅转矢量工具只会描像素边界，输出成千上万条碎线段，不懂"这是直线 / 圆 / 标注"。</div></div>
       <div class="row"><div class="lab">问题定义</div><div class="val">纯大模型能"看图写代码"，但给不出精确坐标，画出来"大概像"、尺寸对不上；传统矢量化工具又不懂语义。业界尚无"一键全自动出完美 CAD"的方案。</div></div>
-      <div class="row"><div class="lab">解决方案</div><div class="val">核心思路「精确的事交给算法，理解的事交给 AI，对错由渲染回图的客观指标裁决」。①图像清洗层（二值化 / 去噪 / 图框标题栏剔除 / 剖面线剔除）→ ②确定性 CV 矢量化（HoughLinesP / HoughCircles / Kasa 圆拟合 / 椭圆检测）+ 图元装配（共线合并 / 角度吸附 / 矩形装配）→ ③多 Agent 协同（识别 / 提取 / 校验 / 决策，LangGraph 编排）→ ④渲染回图客观仲裁，取 SSIM 最优并保最优回退。工程图走多臂集成流水线，假山等自由曲线走 Potrace 纯本地离线通道。</div></div>
-      <div class="row"><div class="lab">技术实现</div><div class="val"><div class="techchips"><span class="chip">Python</span><span class="chip">OpenCV</span><span class="chip">RANSAC</span><span class="chip">LangGraph</span><span class="chip">ezdxf</span><span class="chip">RapidOCR</span><span class="chip">通义千问 VLM</span><span class="chip">DeepSeek</span><span class="chip">Potrace</span></div></div></div>
+      <div class="row"><div class="lab">解决方案</div><div class="val">核心思路「精确的事交给算法，理解的事交给 AI，对错由渲染回图的客观指标裁决」。①图像清洗层（二值化 / 去噪 / 图框标题栏剔除 / 剖面线剔除）→ ②矢量量化：确定性 CV（HoughLinesP / HoughCircles / Kasa 圆拟合 / 椭圆检测）+ 图元装配（共线合并 / 角度吸附 / 矩形装配），以及「中心线提取（骨架化 + 追踪）+ 图元拟合（直线 / 圆弧 / 圆）」→ ③多 Agent 协同（识别 / 提取 / 校验 / 决策，LangGraph 编排）→ ④渲染回图客观仲裁，按综合分（SSIM + Dice + Chamfer）取最优并保最优回退。工程图走「多臂集成」流水线；假山等自由曲线走「中心线提取 + 图元拟合」，纯本地离线。</div></div>
+      <div class="row"><div class="lab">技术实现</div><div class="val"><div class="techchips"><span class="chip">Python</span><span class="chip">OpenCV</span><span class="chip">骨架化 · 图元拟合</span><span class="chip">LangGraph</span><span class="chip">ezdxf</span><span class="chip">RapidOCR</span><span class="chip">DeepSeek</span></div></div></div>
       <div class="row"><div class="lab">项目亮点</div><div class="val"><ul>
-        <li>多臂集成 + 客观仲裁：A(CV) / B(纯语义) / C / D(融合) / DS(DeepSeek 直画) 多路线并行提案，渲染回图比 SSIM 取最优，保证输出永不差于当轮基线</li>
+        <li>多臂集成 + 客观仲裁：A(确定性 CV) / CL(中心线拟合) / SPEC(大模型出结构化图元) / D(接地代码) / B(纯语义) / DS(大模型直画) 多路线并行提案，渲染回图按综合分(SSIM + Dice + Chamfer)取最优，保证输出永不差于当轮基线</li>
+        <li>中心线矢量量化：骨架化 → 追踪 → 端点吸附 / 合并 → 拟合直线 / 圆弧 / 圆，把"碎折线"变成干净可编辑图元；图上文字用 OCR + 大模型纠错</li>
+        <li>工程严谨性：修复评测指标实现 bug（掩码取反导致 IoU/Dice 失真）、单臂失败自动跳过、结果缓存</li>
         <li>A/B/C/D/E + DS 对照实验发现规律：接地式生成在 CV 可靠时最优、纯语义 / 大模型整体生成在 CV 失效时更稳，据此设计集成仲裁</li>
         <li>校验信号必须客观：不让 AI 自评，用"渲染回图 + 像素 / 结构指标（SSIM / IoU / Chamfer）"做外部裁判</li>
         <li>图元装配把"碎线"变成"结构化形状"，输出更干净、可编辑</li>
-        <li>简单 / 中等图 SSIM 0.75~0.84，复杂装配图较基线 0.38→0.63；相关成果已申请国家发明专利</li>
+        <li>简单 / 中等图 SSIM 0.75~0.84，复杂装配图较基线 0.38→0.63；假山对标商用工具独立实现、更干净（约 2 秒）；相关成果已申请国家发明专利</li>
       </ul></div></div>
       <div class="row"><div class="lab">项目价值</div><div class="val">把"图片转可编辑 CAD"落地为辅助级矢量化工具（AI 出 70~80% 初稿、人工精修），按图形类型分流，覆盖工程图与假山双场景。</div></div>
-      <div class="row"><div class="lab">个人贡献</div><div class="val">独立完成整体架构与核心开发；基于 OpenCV / RANSAC 实现多种几何装配；用 LangGraph 编排识别、提取、校验、决策四个 Agent，以"渲染回图比对"驱动迭代与保最优；通过多臂对照实验提出"多臂集成 + 客观仲裁"方案。</div></div>
+      <div class="row"><div class="lab">个人贡献</div><div class="val">独立完成整体架构与核心开发；实现确定性 CV 矢量化与图元装配，新增「中心线拟合通道（骨架化 + 图元拟合）」与「规格臂（大模型出结构化图元）」；用 LangGraph 编排识别、提取、校验、决策四个 Agent；把客观仲裁从"比 SSIM"升级为"综合分（SSIM + Dice + Chamfer）"，并实现单臂容错与结果缓存；通过多臂对照实验提出"多臂集成 + 客观仲裁"方案。</div></div>
 
       <div style="margin-top:18px;">
         <a class="dl-btn" href="https://github.com/d651vfzdgvsc2/sketch2cad" target="_blank" rel="noopener" style="background:linear-gradient(120deg,#16324F,#1F4468);box-shadow:0 4px 12px rgba(22,50,79,.25);"><span class="ic">↗</span> 查看源码（GitHub）</a>
@@ -96,13 +101,13 @@
       </div>
 
       <div class="imgs">
-        <figure class="img-box"><img src="images/p2_cad.png" alt="CAD 矢量化效果"><figcaption>CAD 矢量化效果</figcaption></figure>
+        <figure class="img-box"><img src="images/p2_cad.png" alt="图纸矢量化系统界面"><figcaption>图纸矢量化系统 · 界面</figcaption></figure>
         <figure class="img-box"><img src="images/p3_mountain.jpg" alt="假山 / CAD 矢量化"><figcaption>假山 / CAD 矢量化工作流</figcaption></figure>
       </div>
 
       <div class="card" style="margin-top:26px;background:var(--bg-warm);">
         <strong style="color:var(--green);font-family:var(--sans);font-size:16px;">PRD 摘要（产品需求文档.pdf）</strong>
-        <p style="font-size:14.5px;color:var(--muted);margin-top:10px;">文档包含项目背景、用户角色、功能需求（图像清洗 / 矢量化 / 多 Agent 协同 / 渲染回图仲裁 / DXF 输出）、非功能性需求与验收标准。核心链路：输入图片 → 模式选择（工程图 / 假山）→ 清洗与 CV 矢量化 → 多 Agent 提案与校验 → 按 SSIM 客观仲裁取最优 → 输出可编辑 DXF。</p>
+        <p style="font-size:14.5px;color:var(--muted);margin-top:10px;">文档包含项目背景、用户角色、功能需求（图像清洗 / 矢量化 / 多 Agent 协同 / 渲染回图仲裁 / DXF 输出）、非功能性需求与验收标准。核心链路：输入图片 → 模式选择（工程图 / 假山）→ 清洗与 CV 矢量化 → 多 Agent 提案与校验 → 按综合分客观仲裁取最优 → 输出可编辑 DXF。</p>
         <a class="dl-btn" href="images/sketch2cad_prd.pdf" target="_blank" download><span class="ic">⬇</span> 下载产品需求文档（PDF）</a>
       </div>
     </div>
@@ -110,16 +115,22 @@
 
 <!-- 项目三 -->
   <article class="project reveal" id="p3">
-    <div class="ph"><div class="no">03</div><h3>AI 提示词自动化生成与 PPT 定制工具</h3><div class="ptag">视觉大模型 · Prompt</div></div>
+    <div class="ph"><div class="no">03</div><h3>DeckCraft：参考图驱动的 AI 演示设计工作流</h3><div class="ptag">AI 体验设计 · 工作流 · 原型</div></div>
     <div class="pbody">
-      <div class="row"><div class="lab">项目简介</div><div class="val">针对用户制作 PPT 时需求描述不清晰、Prompt 编写成本高的问题，设计 AI 提示词自动生成工具，将自然语言需求转换为结构化 PPT 生成指令。</div></div>
-      <div class="row"><div class="lab">项目背景</div><div class="val">PPT 制作中用户常因需求描述不清晰而反复调试 Prompt，提示词编写成本高。</div></div>
-      <div class="row"><div class="lab">问题定义</div><div class="val">用户难以将自然语言需求快速转换为高质量的结构化 PPT 生成指令。</div></div>
-      <div class="row"><div class="lab">解决方案</div><div class="val">负责产品需求分析、Prompt 模板设计及大模型调用流程搭建；通过 OpenCode 辅助完成开发调试，结合 DeepSeek API 实现用户需求理解、提示词优化及内容生成流程。</div></div>
-      <div class="row"><div class="lab">技术实现</div><div class="val"><div class="techchips"><span class="chip">大模型 API</span><span class="chip">Prompt 工程</span><span class="chip">JavaScript</span><span class="chip">Web 前端</span><span class="chip">DeepSeek API</span><span class="chip">OpenCode</span></div></div></div>
-      <div class="row"><div class="lab">项目亮点</div><div class="val"><ul><li>完成 AI 应用产品化开发，实现面向办公场景的智能辅助生成流程</li><li>提升 PPT 制作效率约 90%</li><li>相关技术成果已申请国家发明专利</li></ul></div></div>
-      <div class="row"><div class="lab">项目价值</div><div class="val">显著降低 PPT 制作中 Prompt 编写成本，提升办公场景 AI 工具使用效率。</div></div>
-      <div class="row"><div class="lab">个人贡献</div><div class="val">负责产品需求分析、Prompt 模板设计及大模型调用流程搭建；设计前端交互页面，实现参考资料解析、PPT 结构规划及生成内容自动整理。</div></div>
+      <div class="row"><div class="lab">项目简介</div><div class="val">面向"想做 PPT 但不会设计"的用户，把一张参考图或一句话需求，拆解成<strong>结构化、可编辑的设计规范</strong>（配色 / 版式 / 字体），再<strong>直接产出可下载的 .pptx</strong>——把"写提示词"升级为可交付的演示设计工作流。</div></div>
+      <div class="row"><div class="lab">项目背景</div><div class="val">非设计用户往往能说清"想要什么感觉"，却难以把它转成可执行的设计规范；结果是反复试错、出稿慢、风格不稳定，设计经验也无法沉淀复用。</div></div>
+      <div class="row"><div class="lab">问题定义</div><div class="val">1）需求 → 设计规范的转化全靠人；2）风格经验难以沉淀、复用；3）产出只是文本提示词，用户还得自己做 PPT。</div></div>
+      <div class="row"><div class="lab">解决方案</div><div class="val">以「精确的事交给算法、理解的事交给 AI、经验沉淀为规范」为原则：① 参考图 → OpenCV k-means 提取主色（确定性）+ 视觉大模型理解主题 / 版式 / 字体 → <strong>可编辑的设计规范</strong>；② 规范 + 需求 → 大模型生成演示大纲；③ python-pptx 依规范渲染 → <strong>直接产出 .pptx</strong>；④ 规范可保存复用（Skill 化）。</div></div>
+      <div class="row"><div class="lab">技术实现</div><div class="val"><div class="techchips"><span class="chip">Python</span><span class="chip">Flask</span><span class="chip">OpenCV · k-means</span><span class="chip">DeepSeek 视觉模型</span><span class="chip">python-pptx</span><span class="chip">SSE 流式</span><span class="chip">HTML / CSS / JS</span></div></div></div>
+      <div class="row"><div class="lab">项目亮点</div><div class="val"><ul>
+        <li>参考图 → 结构化设计规范：不是把图丢给模型，而是拆成<strong>可编辑</strong>的配色 / 版式 / 字体规范（主色由 k-means 确定性提取，语义交模型）</li>
+        <li>端到端交付：直接产出<strong>可打开的 .pptx</strong>，而不是只给一段文字</li>
+        <li>设计规范可复用（Skill 化）：风格可沉淀、可一键套用</li>
+        <li>交互原型能力：原生 HTML / CSS / JS 界面 + SSE 流式反馈 + 迭代优化 + 历史记录</li>
+        <li>相关成果已申请国家发明专利</li>
+      </ul></div></div>
+      <div class="row"><div class="lab">项目价值</div><div class="val">把"提示词助手"升级为"可交付的演示设计工作流"，降低非设计用户的出稿门槛，并让风格可复用、可稳定。</div></div>
+      <div class="row"><div class="lab">个人贡献</div><div class="val">独立完成需求分析、信息架构与交互原型；设计并实现"参考图 → 设计规范 → 成品"工作流；完成主色提取（k-means）、视觉模型风格拆解、python-pptx 渲染与流式交互；打磨前端界面与可用性。</div></div>
 
       <div style="margin-top:18px;">
         <a class="dl-btn" href="https://github.com/d651vfzdgvsc2/AIPPT" target="_blank" rel="noopener" style="background:linear-gradient(120deg,#16324F,#1F4468);box-shadow:0 4px 12px rgba(22,50,79,.25);"><span class="ic">↗</span> 查看源码（GitHub）</a>
@@ -130,12 +141,12 @@
       </div>
 
       <div class="imgs single">
-        <figure class="img-box"><img src="images/p2_prompt.png" alt="Prompt 项目界面"><figcaption>Prompt 项目界面</figcaption></figure>
+        <figure class="img-box"><img src="images/deckcraft_ui.png" alt="DeckCraft 界面"><figcaption>DeckCraft 界面 · 参考图拆解为可编辑设计规范</figcaption></figure>
       </div>
 
       <div class="card" style="margin-top:26px;background:var(--bg-warm);">
         <strong style="color:var(--green);font-family:var(--sans);font-size:16px;">PRD 摘要（产品需求文档.pdf）</strong>
-        <p style="font-size:14.5px;color:var(--muted);margin-top:10px;">文档包含项目背景、目标用户与场景、功能需求（需求输入 / 参考图上传 / 生成 / 流式输出 / 再优化 / 历史记录）、接口设计、非功能需求与验收标准。核心链路：用户输入需求或参考图 → Flask 后端校验（非空 / 限流 / Key）→ 组装 messages → 调用 DeepSeek 视觉模型（流式）→ SSE 逐字推送到前端 → 复制 / 再优化一版 → 历史记录落本地。</p>
+        <p style="font-size:14.5px;color:var(--muted);margin-top:10px;">文档包含项目背景、目标用户与场景、功能需求（需求输入 / 参考图上传 / 参考图拆解为设计规范 / 生成并下载 PPT / 流式输出 / 再优化 / 历史记录）、接口设计、非功能需求与验收标准。核心链路：参考图或需求 → Flask 校验（非空 / 限流 / Key）→ k-means 提主色 + 视觉模型理解风格 → 可编辑设计规范 → 模型生成大纲 → python-pptx 渲染并下载 .pptx。</p>
         <a class="dl-btn" href="images/ppt_prd.pdf" target="_blank" download><span class="ic">⬇</span> 下载产品需求文档（PDF）</a>
       </div>
     </div>

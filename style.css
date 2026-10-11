@@ -507,3 +507,23 @@ img{max-width:100%;display:block;}
 }
 .hero-btn:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(0,0,0,.26);}
 .hero-btn .ic{color:var(--gold);}
+.hero-btn.ghost{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.45);box-shadow:none;}
+.hero-btn.ghost:hover{background:rgba(255,255,255,.22);box-shadow:none;}
+.hero-btn.ghost .ic{color:#E8C87E;}
+
+/* 简历更新日期 */
+.resume-date{text-align:center;color:var(--muted-2);font-size:13px;margin-top:12px;letter-spacing:.5px;}
+
+/* ============ 中英文切换按钮 ============ */
+.lang-switch{
+  margin-left:14px;flex-shrink:0;cursor:pointer;
+  font-family:var(--sans);font-size:13px;font-weight:700;letter-spacing:1px;line-height:1;
+  color:#fff;background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.38);
+  padding:8px 15px;border-radius:999px;
+  transition:background .25s,border-color .25s,color .25s;
+}
+.lang-switch:hover{background:rgba(255,255,255,.24);border-color:rgba(200,162,94,.75);color:#fff;}
+@media (min-width:881px){ .nav-links{margin-left:auto;} }
+.page-ind{margin-left:auto;}
+@media print{ .lang-switch{display:none !important;} }

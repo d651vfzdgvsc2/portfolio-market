@@ -36,14 +36,13 @@
       <div class="row"><div class="lab">角色定位</div><div class="val">作为 2 人项目组主力，主导核心链路：独立完成 3 家 ASR/TTS 接入调优、成本测算与客户演示</div></div>
       <div class="row"><div class="lab">项目简介</div><div class="val">把「粤语学习 × AI」从想法做成能演示、能落地的政企产品。面向香港政务 / 公共教育场景，主导搭建粤语多模态 AI Agent POC，整合 ASR、TTS 与大模型 Agent 能力，打通学生端 + 教师端全链路，完成本地联调与公网部署。</div></div>
       <div class="row"><div class="lab">我的职责</div><div class="val"><ul>
-        <li>端到端主导：从需求拆解、方案设计与技术选型，到集成开发、部署上线、客户演示，全程负责</li>
+        <li>端到端主导：从需求拆解、方案设计与技术选型，到集成开发、部署上线、客户演示，协同排查接口、部署与模型调用异常，全程负责</li>
         <li>独立完成 3 家 ASR/TTS 厂商 API 接入与参数调优，攻克粤语识别、中英混合语言检测等落地难点</li>
         <li>设计与实现 AI 教练的 Agent 教学逻辑：实时判断学生语种与表达，自动选择教学动作（持续引导回粤语 / 自然纠错 / 开启新话题），实现个性化陪练</li>
         <li>设计成本与调用控制：自由聊天按 8 小时窗口限制最多 50 轮，翻译 / 查词按 1 小时窗口设 30–100 次配额，配合发音评分结果缓存与超限自动收尾，控制大模型与语音 API 的 token / 调用成本</li>
         <li>基于客户方提供的真实使用场景参数（目标用户规模 × 使用频次），完成日常 / 峰值双负载的 token 成本测算（覆盖周 / 月 / 年三维度），支撑客户采购决策</li>
-        <li>打通学生端与教师端，交付完整的学习闭环产品（学习数据经 PostgreSQL 持久化），而非单点 Demo</li>
+        <li>打通学生端+教师端，学习数据经PostgreSQL持久化，交付闭环产品而非单点Demo</li>
         <li>代表项目对公司领导汇报、对客户方进行 POC 演示，推动项目从内部验证走向市场</li>
-        <li>协同团队排查接口、部署与模型调用异常，输出可对外演示的 POC 原型</li>
       </ul></div></div>
       <div class="row"><div class="lab">技术实现</div><div class="val"><div class="techchips"><span class="chip">ASR / TTS</span><span class="chip">多厂商语音接入（豆包 / 阿里 / 讯飞）</span><span class="chip">粤语识别 / 中英混检</span><span class="chip">简繁归一（OpenCC）</span><span class="chip">大模型 Agent（语种自适应调度）</span><span class="chip">成本 / 调用控制</span><span class="chip">Web / Node.js</span><span class="chip">PostgreSQL</span><span class="chip">公网部署</span></div></div></div>
       <div class="row"><div class="lab">项目亮点</div><div class="val"><ul>
@@ -80,13 +79,17 @@
 </section>
 
 <script>
+// 滚动显现：内容默认可见，进入视口时淡入上移（无 JS / 打印 / 截图 均不空白）
 (function(){
   var els=document.querySelectorAll('.reveal');
-  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in');});return;}
-  var io=new IntersectionObserver(function(es){
-    es.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target);}});
-  },{threshold:.08});
-  els.forEach(function(e){io.observe(e);});
+  function show(e){e.classList.add('in');}
+  var io=('IntersectionObserver' in window)?new IntersectionObserver(function(es){
+    es.forEach(function(x){if(x.isIntersecting){show(x.target);io.unobserve(x.target);}});
+  },{threshold:.08}):null;
+  els.forEach(function(e){
+    if(!io||e.getBoundingClientRect().top<(window.innerHeight||0)){show(e);}
+    else{io.observe(e);}
+  });
 })();
 </script>
 

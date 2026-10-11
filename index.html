@@ -26,7 +26,7 @@
   <div class="hero-inner">
     <span class="tag">大模型交付工程师（FDE）/ AI 应用工程师（可接受全国调配及长期出差、驻场交付）</span>
     <h1>潘昕<br><span class="accent">AI 应用与交付作品集</span></h1>
-    <p class="lead">园林专业背景，自学 Python 与 AI 工程化开发，具备「业务痛点洞察 + AI 工具落地」的闭环能力。</p>
+    <p class="lead">园林专业背景，具备「业务痛点洞察 + AI 工程化落地」的闭环能力。</p>
     <div class="keys">
       <span>AI 应用开发</span>
       <span>Agent 智能工作流</span>
@@ -78,7 +78,7 @@
         <li>Python、大模型 API 调用与 AI 工程化开发（DeepSeek / 视觉大模型 / OpenAI 兼容接口）</li>
         <li>多 Agent 协同：Orchestrator 状态机编排、共享黑板、确定性校验，LangGraph 状态图编排</li>
         <li>MCP 协议配置与工具调用（Function Calling）</li>
-        <li>Prompt Engineering 与视觉大模型应用；图像矢量化（OpenCV / RANSAC）</li>
+        <li>Prompt Engineering 与视觉大模型应用；图像矢量化（OpenCV）</li>
         <li>Node.js / Express / RESTful API 后端开发与 SQL（PostgreSQL）数据持久化</li>
         <li>AI 开发工具：Codex / Claude Code / OpenCode / WorkBuddy；需求拆解、PRD 编写与专利方案整理</li>
         <li>设计工具：Figma（流程图 / 界面原型绘制）</li>
@@ -118,14 +118,17 @@
 </section>
 
 <script>
-// 滚动显现
+// 滚动显现：内容默认可见，进入视口时淡入上移（无 JS / 打印 / 截图 均不空白）
 (function(){
   var els=document.querySelectorAll('.reveal');
-  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in');});return;}
-  var io=new IntersectionObserver(function(es){
-    es.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target);}});
-  },{threshold:.12});
-  els.forEach(function(e){io.observe(e);});
+  function show(e){e.classList.add('in');}
+  var io=('IntersectionObserver' in window)?new IntersectionObserver(function(es){
+    es.forEach(function(x){if(x.isIntersecting){show(x.target);io.unobserve(x.target);}});
+  },{threshold:.12}):null;
+  els.forEach(function(e){
+    if(!io||e.getBoundingClientRect().top<(window.innerHeight||0)){show(e);}
+    else{io.observe(e);}
+  });
 })();
 </script>
 

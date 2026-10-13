@@ -31,7 +31,7 @@
     "您的浏览器不支持视频播放。": "Your browser does not support video playback.",
 
     /* ---------- 首页 index ---------- */
-    "大模型交付工程师（FDE）/ AI 应用工程师（可接受全国调配及长期出差、驻场交付）": "LLM Delivery Engineer (FDE) / AI Application Engineer (open to nationwide relocation, long-term travel & on-site delivery)",
+    "大模型交付工程师（FDE）/ AI应用 / AI体验设计师（可接受全国调配及长期出差、驻场交付）": "LLM Delivery Engineer (FDE) / AI Application / AI Experience Designer (open to nationwide relocation, long-term travel & on-site delivery)",
     "AI 应用与交付作品集": "AI Application & Delivery Portfolio",
     "园林专业背景，具备「业务痛点洞察 + AI 工程化落地」的闭环能力。": "Landscape-architecture background with a closed loop of pain-point insight and AI engineering delivery.",
     "AI 应用开发": "AI Application Dev",

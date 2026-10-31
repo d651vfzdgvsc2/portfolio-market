@@ -23,18 +23,17 @@
 
   <rect x="70" y="196" width="400" height="104" rx="6" fill="#fff" stroke="#1a1a1a" stroke-width="1.3"/>
   <text x="90" y="224" font-size="15" font-weight="700" fill="#1a1a1a">语音识别（多厂商）</text>
-  <text x="90" y="250" font-size="13" fill="#1a1a1a">豆包大模型 ASR（主） · 阿里 qwen3-asr（并行）</text>
-  <text x="90" y="272" font-size="13" fill="#1a1a1a">讯飞 IAT（交叉校验 / 兜底）</text>
-  <text x="90" y="294" font-size="13" fill="#1a1a1a">→ 转写 + 语种识别 + 中英混合检测</text>
+  <text x="90" y="250" font-size="13" fill="#1a1a1a">豆包大模型 ASR（主） · 阿里 qwen3-asr（交叉核对 / 兜底）</text>
+  <text x="90" y="274" font-size="13" fill="#1a1a1a">→ 转写 + 语种识别 + 中英混合检测</text>
 
   <rect x="70" y="320" width="400" height="62" rx="6" fill="#fff" stroke="#1a1a1a" stroke-width="1.3"/>
   <text x="90" y="348" font-size="15" font-weight="700" fill="#1a1a1a">语音分析</text>
-  <text x="90" y="370" font-size="13" fill="#1a1a1a">Cantonese.ai 发音评分 · 讯飞 SunTone 声调</text>
+  <text x="90" y="370" font-size="13" fill="#1a1a1a">Cantonese AI 发音评分 · 声调分析</text>
 
   <rect x="70" y="402" width="400" height="76" rx="6" fill="#fff" stroke="#1a1a1a" stroke-width="1.3"/>
   <text x="90" y="430" font-size="15" font-weight="700" fill="#1a1a1a">大模型 Agent</text>
   <text x="90" y="454" font-size="13" fill="#1a1a1a">判断语种 → 选教学动作</text>
-  <text x="90" y="472" font-size="13" fill="#1a1a1a">→ 生成粤语回复（DeepSeek / OpenAI）</text>
+  <text x="90" y="472" font-size="13" fill="#1a1a1a">→ 生成粤语回复（DeepSeek）</text>
 
   <rect x="70" y="498" width="400" height="54" rx="6" fill="#fff" stroke="#1a1a1a" stroke-width="1.3"/>
   <text x="90" y="531" font-size="15" font-weight="700" fill="#1a1a1a">输出：粤语回复 + 释义 + TTS 示范音</text>

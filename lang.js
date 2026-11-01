@@ -16,7 +16,7 @@
     "联系": "Contact",
     "潘昕": "Pan Xin",
     "作品集": "Portfolio",
-    "更新于 2026.10 · 潘昕 · AI 应用与交付作品集": "Updated 2026.10 · Pan Xin · AI Application & Delivery Portfolio",
+    "更新于 2026.11 · 潘昕 · AI 应用与交付作品集": "Updated 2026.11 · Pan Xin · AI Application & Delivery Portfolio",
     "下一项": "",
     "项": "",
     "下一页 · 实习经历": "Next · Experience",
@@ -258,7 +258,7 @@
     "电话": "Phone",
     "邮箱": "Email",
     "韶关学院 · 园林专业 · 本科（2023.09–2027.06）": "Shaoguan University · Landscape Architecture · Bachelor (2023.09–2027.06)",
-    "简历更新于 2026.10": "Résumé updated 2026.10"
+    "简历更新于 2026.11": "Résumé updated 2026.11"
   };
 
   var TITLES = {
